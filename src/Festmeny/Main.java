@@ -9,6 +9,7 @@ public class Main {
         Festmeny f1=new Festmeny("Mona Lisa","Leonardo da Vinci","passz");
         System.out.println(f1);
         System.out.println(f1.getFesto());
+        System.out.println(f1.getStilus());
     }
 
 
