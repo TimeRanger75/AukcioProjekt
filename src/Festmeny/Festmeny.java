@@ -50,7 +50,7 @@ public class Festmeny {
 
 
     public void licit(){
-        if (this.elkelt==true)
+        if (this.elkelt)
             System.out.println("A festmény elkelt");
         else{
             if (this.licitekSzama==0) {
@@ -59,17 +59,32 @@ public class Festmeny {
                 this.legutolsoLicitIdeje=LocalDateTime.now();
             }
             else {
-                this.legmagasabbLicit=(this.legmagasabbLicit/100)*10;
+                this.legmagasabbLicit= (int) (this.legmagasabbLicit*1.1);
                 this.licitekSzama++;
                 this.legutolsoLicitIdeje=LocalDateTime.now();
             }
         }
-
     }
 
+    public void licit(int mertek){
+        if (this.elkelt)
+            System.out.println("A festmény elkelt");
+        else{
+            if (mertek<10||mertek>100)
+                System.out.println("Hiba,érvénytelen");
+            else {
+                this.legmagasabbLicit= (int) (this.legmagasabbLicit*(1+mertek*0.01));
+                this.licitekSzama++;
+                this.legutolsoLicitIdeje=LocalDateTime.now();
+            }
+        }
+    }
 
     @Override
     public String toString() {
-       return String.format("%s festette %s, %s stílusban",this.cim,this.festo,this.stilus);
+       if (this.elkelt)
+           return String.format("%s : %s (%s)\nelkelt\n%d $ - "+this.legutolsoLicitIdeje+" (összesen: %d db)",this.festo,this.cim,this.stilus,this.legmagasabbLicit,this.licitekSzama);
+        else
+           return String.format("%s : %s (%s)\n%d $ - "+this.legutolsoLicitIdeje+" (összesen: %d db)",this.festo,this.cim,this.stilus,this.legmagasabbLicit,this.licitekSzama);
     }
 }
