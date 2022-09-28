@@ -21,5 +21,11 @@ public class Festmeny {
         this.elkelt=false;
         this.legutolsoLicitIdeje=null;
     }
+    public String getFesto(){return this.festo;}
 
+
+    @Override
+    public String toString() {
+       return String.format("%s festette %s, %s stílusban",this.cim,this.festo,this.stilus);
+    }
 }
